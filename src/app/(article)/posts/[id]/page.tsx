@@ -1,7 +1,6 @@
 import Link from 'next/link'
 
 import { IconHourglassHigh, IconHash } from '@tabler/icons-react'
-import dayjs from 'dayjs'
 import { TOC } from 'react-markdown-toc/server'
 
 import { repoName, repoOwner } from '~/blog-config'
@@ -10,7 +9,7 @@ import { GiscusScript } from '@/components/giscus'
 import { Markdown } from '@/markdown'
 import { queryAllPosts, queryByNumber } from '@/service'
 import { getSummary } from '@/service/summary'
-import { readingTime } from '@/utils'
+import { formatDateTime, readingTime } from '@/utils'
 
 export const generateStaticParams = async () => {
   const {
@@ -47,13 +46,31 @@ export default async function Page({ params }: PageProps) {
   const { repository } = await queryByNumber(+id)
 
   const { discussion } = repository!
-  const { title, body, bodyText, labels, createdAt, number } = discussion!
+  const { title, body, bodyText, labels, createdAt, updatedAt, number } =
+    discussion!
+
+  const formatOptions = {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  } satisfies Intl.DateTimeFormatOptions
+  const createDate = formatDateTime(formatOptions, new Date(createdAt))
+  const updateDate = formatDateTime(formatOptions, new Date(updatedAt))
+
+  const showLastUpdateTime = createDate !== updateDate
 
   return (
     <>
       <main className='m-auto grid grid-cols-[1fr_min(80ch,100%)_1fr] justify-center bg-[linear-gradient(to_bottom,transparent,rgb(var(--surface)/1)_150px,rgb(var(--surface)/1)_calc(100%_-_150px),transparent_100%)] px-4 py-28 md:px-8 xl:grid-cols-[80ch_30ch]'>
         <header className='mb-24 w-fit space-y-8 max-xl:col-start-2 xl:col-span-2'>
-          <small>{dayjs(createdAt).format('MMMM D, YYYY')}</small>
+          <span className='text-color-2'>
+            <small>{createDate}</small>
+            {showLastUpdateTime && (
+              <small className='ml-4 rounded bg-brand bg-opacity-5 px-1.5 py-0.5 text-brand'>
+                Last Updated: {updateDate}
+              </small>
+            )}
+          </span>
           <h1 className='text-5xl'>{title}</h1>
           <div className='flex items-center justify-between text-sm text-color-3'>
             <span className='flex gap-2'>

@@ -1,11 +1,11 @@
 import Link from 'next/link'
 
 import { IconX } from '@tabler/icons-react'
-import dayjs from 'dayjs'
 import { type Metadata, type Viewport } from 'next'
 
 import { Dot } from '@/components/blocks/resume'
 import { Typed, TypedContent, TypedText } from '@/components/typed'
+import { formatDateTime } from '@/utils'
 
 export const metadata: Metadata = {
   title: 'Resume',
@@ -20,6 +20,19 @@ export const viewport: Viewport = {
 }
 
 export default function Page() {
+  const lastBuildTime = formatDateTime(
+    {
+      weekday: 'short',
+      month: 'short',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false,
+    },
+    new Date(),
+  )
+
   return (
     <div className='flex min-h-svh items-center justify-center bg-[#282935] p-4'>
       <main className='flex max-h-[90svh] max-w-[65ch] flex-1 flex-col overflow-hidden rounded-2xl border border-gray-600 shadow-2xl shadow-black'>
@@ -39,9 +52,7 @@ export default function Page() {
           <span className='text-end text-gray-500'>⌥⌘1</span>
         </header>
         <div className='min-h-60 flex-1 overflow-y-auto p-2 text-sm text-gray-200 duration-300 animate-in fade-in'>
-          <p className='mb-2'>
-            Last login: {dayjs().format('ddd MMM DD HH:mm:ss')} on ttys003
-          </p>
+          <p className='mb-2'>Last login: {lastBuildTime} on ttys003</p>
           <Typed>
             <TypedText>whoami</TypedText>
             <TypedContent>
