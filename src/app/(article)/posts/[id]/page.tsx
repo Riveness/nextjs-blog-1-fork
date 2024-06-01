@@ -66,7 +66,7 @@ export default async function Page({ params }: PageProps) {
           <span className='text-color-2'>
             <small>{createDate}</small>
             {showLastUpdateTime && (
-              <small className='ml-4 rounded bg-brand bg-opacity-5 px-1.5 py-0.5 text-brand'>
+              <small className='bg-brand/10 ml-4 rounded px-1.5 py-1 text-brand'>
                 Last Updated: {updateDate}
               </small>
             )}
@@ -91,7 +91,7 @@ export default async function Page({ params }: PageProps) {
             </span>
           </div>
         </header>
-        <article className='prose prose-slate max-w-none dark:prose-invert prose-code:break-words prose-pre:-ml-4 prose-pre:-mr-4 prose-img:-ml-4 prose-img:-mr-4 prose-img:rounded dark:prose-img:brightness-75 max-xl:col-start-2 md:prose-pre:-ml-8 md:prose-pre:-mr-8'>
+        <article className='prose prose-slate max-w-none dark:prose-invert has-[img]:prose-p:-mx-4 prose-code:break-words prose-pre:-mx-4 dark:prose-img:brightness-75 max-xl:col-start-2 max-sm:prose-pre:rounded-none sm:prose-img:rounded md:has-[img]:prose-p:-mx-8 md:prose-pre:-mx-8'>
           <Markdown source={body!} />
           <GiscusScript number={number} repo={`${repoOwner}/${repoName}`} />
         </article>
@@ -101,6 +101,7 @@ export default async function Page({ params }: PageProps) {
           </h2>
           <TOC
             markdown={body!}
+            throttleTime={100}
             className='space-y-3 dark:text-color-4'
             ul='pl-6 space-y-2'
             a='data-[active=true]:text-brand dark:data-[active=true]:text-white block text-sm mb-2'

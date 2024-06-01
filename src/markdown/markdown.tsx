@@ -6,7 +6,6 @@ import {
   transformerNotationErrorLevel,
   transformerMetaHighlight,
   transformerMetaWordHighlight,
-  transformerRemoveLineBreak,
 } from '@shikijs/transformers'
 import { transformerTwoslash } from '@shikijs/twoslash'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
@@ -60,7 +59,6 @@ export async function Markdown(props: MarkdownProps) {
               transformerNotationErrorLevel(),
               transformerMetaHighlight(),
               transformerMetaWordHighlight(),
-              transformerRemoveLineBreak(),
               transformerTwoslash({
                 explicitTrigger: true,
               }),

@@ -84,9 +84,3 @@
     animation: breath ease 2s alternate infinite;
   }
 }
-
-.shiki {
-  .line {
-    display: block;
-  }
-}
