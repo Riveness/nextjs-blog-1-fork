@@ -20,7 +20,7 @@
 /* Shiki Twoslash */
 .twoslash-meta-line,
 .twoslash-tag-line {
-  @apply my-1 flex min-w-full items-center gap-2 border-l-2 px-3 py-2.5;
+  @apply my-1 flex min-w-full items-center gap-2 whitespace-break-spaces border-l-2 px-3 py-2.5;
 }
 
 .twoslash-error-line,
