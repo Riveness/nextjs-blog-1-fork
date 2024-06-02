@@ -26,7 +26,7 @@ const CodeGroup = (props: CodeGroupProps) => {
   const current = childrenArray[index]
 
   return (
-    <div className='code-group -mx-4 border bg-surface-1 md:-mx-8 md:rounded'>
+    <div className='mdx-components -mx-4 border bg-surface-1 md:-mx-8 md:rounded'>
       <header className='flex border-b px-4'>
         {fileNames.map((fileName, i) => (
           <button
@@ -43,7 +43,7 @@ const CodeGroup = (props: CodeGroupProps) => {
           </button>
         ))}
       </header>
-      <div className='px-4 md:px-8'>{current}</div>
+      {current}
     </div>
   )
 }

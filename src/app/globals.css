@@ -34,6 +34,15 @@
   --border: 51 65 85; /* theme('colors.slate.700') */
 }
 
+/* Markdown */
+
+.prose {
+  > div > pre,
+  > p:has(img) {
+    @apply -mx-4 md:-mx-8;
+  }
+}
+
 /* Tailwind utilities */
 @layer utilities {
   @keyframes hello {
