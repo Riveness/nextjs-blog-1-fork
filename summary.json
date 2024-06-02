@@ -63,5 +63,6 @@
   "126": "Guide to creating React Native modules in TypeScript with Swift/Kotlin, iOS/Android, and data exchange.",
   "127": "Swift 5.5 introduces Swift Concurrency with async/await syntax similar to web frontend async, simplifying asynchronous programming.",
   "128": "Explanations of the history package in JavaScript, including pushState and replaceState methods, and a brief overview of how React Router uses history for navigation.",
-  "132": "Rebuilding my blog with React Server Components and GitHub Discussions for a cutting-edge, backend-free, visually appealing experience."
+  "132": "Rebuilding my blog with React Server Components and GitHub Discussions for a cutting-edge, backend-free, visually appealing experience.",
+  "135": "Integrate @shikijs/twoslash, @shikijs/transforms, add mdx components."
 }
