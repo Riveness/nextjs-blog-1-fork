@@ -9,6 +9,7 @@ const config: Config = {
   content: [
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/markdown/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/markdown/twoslash/**/*.{ts,tsx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   darkMode: 'class',
@@ -28,6 +29,7 @@ const config: Config = {
         'surface-2': 'rgb(var(--surface-2) / <alpha-value>)',
         'surface-3': 'rgb(var(--surface-3) / <alpha-value>)',
         'surface-4': 'rgb(var(--surface-4) / <alpha-value>)',
+        border: 'rgb(var(--border) / <alpha-value>)',
       },
       boxShadow: {
         bento: '0 2px 4px rgba(0,0,0,.04)',

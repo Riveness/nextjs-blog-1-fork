@@ -3,7 +3,7 @@ type PreProps = React.DetailedHTMLProps<
   HTMLPreElement
 >
 
-export const pre = (props: PreProps) => {
+export const Pre = (props: PreProps) => {
   return (
     <div>
       <pre {...props} />
