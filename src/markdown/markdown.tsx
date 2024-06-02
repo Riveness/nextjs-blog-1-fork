@@ -1,3 +1,5 @@
+import path from 'node:path'
+
 import rehypeShiki, { type RehypeShikiOptions } from '@shikijs/rehype'
 import {
   transformerNotationDiff,
@@ -16,7 +18,7 @@ import remarkDirective from 'remark-directive'
 import remarkGfm from 'remark-gfm'
 import { MDX, type MDXProps } from 'rsc-mdx'
 
-import { remarkDirectiveContainer, rehypeGithubAlert } from './plugins'
+import { rehypeGithubAlert } from './plugins'
 import { rendererMdx } from './twoslash/renderMdx'
 
 interface MarkdownProps {
@@ -30,7 +32,7 @@ export async function Markdown(props: MarkdownProps) {
     <MDX
       source={source}
       useMDXComponents={useMDXComponents}
-      remarkPlugins={[remarkDirective, remarkDirectiveContainer, remarkGfm]}
+      remarkPlugins={[remarkDirective, remarkGfm]}
       rehypePlugins={[
         rehypeGithubAlert,
         rehypeSlug,
@@ -44,6 +46,13 @@ export async function Markdown(props: MarkdownProps) {
         [
           rehypeShiki,
           {
+            parseMetaString: meta => {
+              const metaData = meta.split(' ')
+              const fileName = metaData.find(item => path.extname(item) !== '')
+              return {
+                'data-file': fileName,
+              }
+            },
             themes: {
               light: 'github-light',
               dark: 'dracula-soft',

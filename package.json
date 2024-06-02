@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@discublog/api": "latest",
-    "@formkit/auto-animate": "^0.8.2",
     "@giscus/react": "^3.0.0",
     "@tabler/icons-react": "^3.5.0",
     "clsx": "^2.1.1",
