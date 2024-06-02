@@ -5,7 +5,7 @@ type PreProps = React.DetailedHTMLProps<
 
 export const Pre = (props: PreProps) => {
   return (
-    <div>
+    <div className='relative'>
       <pre {...props} />
     </div>
   )
