@@ -10,6 +10,11 @@ Using [@discublog/api](https://github.com/discublog/api) to query GitHub reposit
 
 ## Deploy
 
+> [!CAUTION]
+> Vercel is not available yet, you can only build locally. https://github.com/shikijs/shiki/issues/693
+
+---
+
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fzhangyu1818%2Fblog&env=GITHUB_TOKEN,REPO_NAME,REPO_OWNER&envDescription=GitHub%20Token&envLink=https%3A%2F%2Fdocs.github.com%2Fen%2Fauthentication%2Fkeeping-your-account-and-data-secure%2Fmanaging-your-personal-access-tokens&project-name=blog&repository-name=blog&demo-title=zhangyu1818's%20blog&demo-description=Personal%20blog&demo-url=https%3A%2F%2Fzhangyu.dev)
 
 > [!IMPORTANT]
