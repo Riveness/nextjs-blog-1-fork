@@ -14,11 +14,10 @@ import { transformerTwoslash } from '@shikijs/twoslash'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import { rehypeDefaultCodeLang } from 'rehype-default-code-lang'
 import rehypeSlug from 'rehype-slug'
-import remarkDirective from 'remark-directive'
 import remarkGfm from 'remark-gfm'
 import { MDX, type MDXProps } from 'rsc-mdx'
 
-import { rehypeGithubAlert } from './plugins'
+import { rehypeGithubAlert, findCodeText } from './plugins'
 import { rendererMdx } from './twoslash/renderMdx'
 
 interface MarkdownProps {
@@ -32,7 +31,7 @@ export async function Markdown(props: MarkdownProps) {
     <MDX
       source={source}
       useMDXComponents={useMDXComponents}
-      remarkPlugins={[remarkDirective, remarkGfm]}
+      remarkPlugins={[remarkGfm]}
       rehypePlugins={[
         rehypeGithubAlert,
         rehypeSlug,
@@ -46,11 +45,14 @@ export async function Markdown(props: MarkdownProps) {
         [
           rehypeShiki,
           {
-            parseMetaString: meta => {
+            parseMetaString: (meta, node) => {
               const metaData = meta.split(' ')
               const fileName = metaData.find(item => path.extname(item) !== '')
+              const codeText = findCodeText(node)
+
               return {
                 'data-file': fileName,
+                content: codeText?.value,
               }
             },
             themes: {

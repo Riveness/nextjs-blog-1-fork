@@ -4,6 +4,24 @@ import { visit } from 'unist-util-visit'
 import type { Text } from 'hast'
 import type { Plugin } from 'unified'
 
+export const findCodeText = (node: unknown): Text | null => {
+  if (!isElement(node)) {
+    return null
+  }
+
+  if (node.tagName === 'code') {
+    return node.children[0] as Text
+  }
+
+  for (const child of node.children) {
+    const text = findCodeText(child)
+    if (text) {
+      return text
+    }
+  }
+  return null
+}
+
 export const rehypeGithubAlert: Plugin = () => tree =>
   visit(tree, node => {
     if (isElement(node)) {
