@@ -17,7 +17,7 @@ import { Markdown } from '@/markdown'
 import { Alert, CodeGroup, Details, Pre } from '@/markdown/components'
 import { TwoslashTooltip } from '@/markdown/twoslash/tooltip'
 import { TwoslashTrigger } from '@/markdown/twoslash/triger'
-import { queryAllPosts, queryByNumber } from '@/service'
+import { queryAllPosts } from '@/service'
 import { getSummary } from '@/service/summary'
 import { formatDateTime, readingTime } from '@/utils'
 
@@ -34,8 +34,10 @@ export const generateStaticParams = async () => {
 export const generateMetadata = async ({ params }: PageProps) => {
   const { id } = params
 
-  const { repository } = await queryByNumber(+id)
-  const { discussion } = repository!
+  const {
+    search: { nodes },
+  } = await queryAllPosts()
+  const discussion = nodes.find(node => node.number === +id)!
   const { title } = discussion!
 
   // TODO og, twitter
@@ -56,9 +58,11 @@ interface PageProps {
 export default async function Page({ params }: PageProps) {
   const { id } = params
 
-  const { repository } = await queryByNumber(+id)
+  const {
+    search: { nodes },
+  } = await queryAllPosts()
 
-  const { discussion } = repository!
+  const discussion = nodes.find(node => node.number === +id)!
   const { title, body, bodyText, labels, createdAt, updatedAt, number } =
     discussion!
 
