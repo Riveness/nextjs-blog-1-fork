@@ -8,10 +8,12 @@ Using [Next.js](https://nextjs.org/) v14 App Router and React Server Components.
 
 Using [@discublog/api](https://github.com/discublog/api) to query GitHub repository discussions and rendering Markdown with [@mdx-js/mdx](https://github.com/mdx-js/mdx).
 
-## Deploy
+## Vercel Deploy
 
 > [!CAUTION]
-> Vercel is not available yet, you can only build locally. https://github.com/shikijs/shiki/issues/693
+> Vercel Deploy is not available yet. https://github.com/shikijs/shiki/issues/693
+> 
+> You can build locally and deploy to Vercel, or use this [GitHub Action](.github/workflows/deploy.yml).
 
 ---
 
