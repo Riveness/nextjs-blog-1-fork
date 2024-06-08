@@ -24,8 +24,10 @@ export const CopyButton = (props: CopyButtonProps) => {
   return (
     <button
       className={clsx(
-        'absolute right-3 top-3 hidden rounded p-2 hover:bg-color-1/10 group-hover:block',
-        copied ? '!block bg-color-1/10 text-green-500' : 'text-gray-500',
+        'copy-button absolute right-1 top-6 hidden -translate-y-1/2 rounded p-2 hover:bg-gray-100 group-hover:block dark:hover:bg-gray-700 md:-right-4',
+        copied
+          ? '!block bg-gray-100 text-green-500 dark:bg-gray-700'
+          : 'text-gray-500',
       )}
       onClick={handleClick}
     >

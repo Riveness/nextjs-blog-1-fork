@@ -140,3 +140,8 @@
 .mdx-components pre {
   @apply my-0;
 }
+
+/* mdx component */
+.mdx-components .copy-button {
+  @apply right-3;
+}
