@@ -135,3 +135,8 @@
     }
   }
 }
+
+/* mdx component */
+.mdx-components pre {
+  @apply my-0;
+}
