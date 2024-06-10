@@ -1,18 +1,19 @@
 'use client'
 
-import { useState, Children, isValidElement } from 'react'
-
 import clsx from 'clsx'
 
+import { Children, isValidElement, useState } from 'react'
+
 interface CodeGroupProps {
-  'data-children-meta': string
   children: React.ReactNode
+  'data-children-meta': string
 }
 const CodeGroup = (props: CodeGroupProps) => {
   const { children } = props
   const [index, setIndex] = useState(0)
 
   const childrenArray = Children.toArray(children)
+  // eslint-disable-next-line array-callback-return
   const fileNames = childrenArray.map(child => {
     if (isValidElement(child)) {
       const childrenArr = Children.toArray(

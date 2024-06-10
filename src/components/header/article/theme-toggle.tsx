@@ -1,15 +1,16 @@
 'use client'
 
-import { IconCheck, IconSun, IconMoon } from '@tabler/icons-react'
-import { type Theme } from 'dark-toggle'
+import { IconCheck, IconMoon, IconSun } from '@tabler/icons-react'
 import { useDarkToggle } from 'dark-toggle/react'
 import { MenuTrigger } from 'react-aria-components'
 
-import { Menu, MenuItem, Button, Popover } from '@/components/ui'
+import { Button, Menu, MenuItem, Popover } from '@/components/ui'
 import { useIsServer } from '@/hooks/useIsServer'
 
+import type { Theme } from 'dark-toggle'
+
 export const ThemeToggle = () => {
-  const { isDark, theme, setTheme } = useDarkToggle()
+  const { isDark, setTheme, theme } = useDarkToggle()
   const isServer = useIsServer()
 
   if (isServer) {

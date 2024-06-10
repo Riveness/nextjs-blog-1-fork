@@ -1,16 +1,15 @@
-import Link from 'next/link'
-
 import {
-  IconHourglassHigh,
-  IconHash,
-  IconInfoSquareRounded,
-  IconBug,
   IconAlertTriangle,
+  IconBug,
   IconBulb,
+  IconHash,
+  IconHourglassHigh,
+  IconInfoSquareRounded,
 } from '@tabler/icons-react'
+import { repoName, repoOwner } from '~/blog-config'
 import { TOC } from 'react-markdown-toc/server'
 
-import { repoName, repoOwner } from '~/blog-config'
+import Link from 'next/link'
 
 import { GiscusScript } from '@/components/giscus'
 import { Markdown } from '@/markdown'
@@ -23,6 +22,12 @@ import { formatDateTime, readingTime } from '@/utils'
 
 // shiki style
 import './shiki.css'
+
+interface PageProps {
+  params: {
+    id: string
+  }
+}
 
 export const generateStaticParams = async () => {
   const {
@@ -38,20 +43,14 @@ export const generateMetadata = async ({ params }: PageProps) => {
     search: { nodes },
   } = await queryAllPosts()
   const discussion = nodes.find(node => node.number === +id)!
-  const { title } = discussion!
+  const { title } = discussion
 
   // TODO og, twitter
   const summery = await getSummary()
   const description = summery[id]
   return {
-    title,
     description,
-  }
-}
-
-interface PageProps {
-  params: {
-    id: string
+    title,
   }
 }
 
@@ -63,13 +62,13 @@ export default async function Page({ params }: PageProps) {
   } = await queryAllPosts()
 
   const discussion = nodes.find(node => node.number === +id)!
-  const { title, body, bodyText, labels, createdAt, updatedAt, number } =
-    discussion!
+  const { body, bodyText, createdAt, labels, number, title, updatedAt } =
+    discussion
 
   const formatOptions = {
-    year: 'numeric',
-    month: 'long',
     day: 'numeric',
+    month: 'long',
+    year: 'numeric',
   } satisfies Intl.DateTimeFormatOptions
   const createDate = formatDateTime(formatOptions, new Date(createdAt))
   const updateDate = formatDateTime(formatOptions, new Date(updatedAt))
@@ -111,16 +110,16 @@ export default async function Page({ params }: PageProps) {
         <Markdown
           source={body!}
           useMDXComponents={() => ({
-            CodeGroup,
             Alert,
+            CodeGroup,
             Details,
-            pre: Pre,
+            IconAlertTriangle,
+            IconBug,
+            IconBulb,
+            IconInfoSquareRounded,
             TwoslashTooltip,
             TwoslashTrigger,
-            IconInfoSquareRounded,
-            IconBug,
-            IconAlertTriangle,
-            IconBulb,
+            pre: Pre,
           })}
         />
         <GiscusScript number={number} repo={`${repoOwner}/${repoName}`} />

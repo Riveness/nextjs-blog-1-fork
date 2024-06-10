@@ -22,6 +22,7 @@ export const findCodeText = (node: unknown): Text | null => {
   return null
 }
 
+// eslint-disable-next-line unicorn/consistent-function-scoping
 export const rehypeGithubAlert: Plugin = () => tree =>
   visit(tree, node => {
     if (isElement(node)) {
@@ -37,7 +38,7 @@ export const rehypeGithubAlert: Plugin = () => tree =>
         if (!value) {
           return
         }
-        const matches = value.match(/\[!(.+)]/)
+        const matches = value.match(/\[!(.+)\]/)
         if (matches) {
           const type = matches[1].toLowerCase()
           text.value = value.replace(matches[0], '').trim()

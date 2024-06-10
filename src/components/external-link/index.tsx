@@ -6,7 +6,7 @@ type ExternalLinkProps = Omit<
   'children'
 >
 export const ExternalLink = (props: ExternalLinkProps) => {
-  const { title, className, ...rest } = props
+  const { className, title, ...rest } = props
 
   return (
     <a

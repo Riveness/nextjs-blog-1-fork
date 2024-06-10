@@ -1,49 +1,52 @@
 import { clsx } from 'clsx'
 import { DarkToggleProvider, DarkToggleScript } from 'dark-toggle/react'
-import { Nunito, Handlee, Sorts_Mill_Goudy } from 'next/font/google'
-
-import { Provider } from '@/provider'
 
 import type { Metadata, Viewport } from 'next'
+import { Handlee, Nunito, Sorts_Mill_Goudy } from 'next/font/google'
+
+import { Provider } from '@/provider'
 
 import './globals.css'
 
 const sans = Nunito({
-  weight: ['400', '600', '700'],
+  display: 'swap',
   subsets: ['latin'],
   variable: '--font-remote-sans',
-  display: 'swap',
+  weight: ['400', '600', '700'],
 })
 
 const serif = Sorts_Mill_Goudy({
-  weight: ['400'],
+  display: 'swap',
   subsets: ['latin'],
   variable: '--font-remote-serif',
-  display: 'swap',
+  weight: ['400'],
 })
 
 const handwriting = Handlee({
-  weight: ['400'],
+  display: 'swap',
   subsets: ['latin'],
   variable: '--font-remote-handwriting',
-  display: 'swap',
+  weight: ['400'],
 })
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
-    { media: '(prefers-color-scheme: dark)', color: '#000212' },
-  ],
   colorScheme: 'light dark',
+  themeColor: [
+    { color: '#ffffff', media: '(prefers-color-scheme: light)' },
+    { color: '#000212', media: '(prefers-color-scheme: dark)' },
+  ],
 }
 
 export const metadata: Metadata = {
-  title: {
-    absolute: 'zhangyu.dev',
-    template: '%s | zhangyu.dev',
+  applicationName: 'zhangyu.dev',
+  authors: {
+    name: 'zhangyu1818',
+    url: 'https://github.com/zhangyu1818',
   },
+  creator: 'zhangyu1818',
   description:
     'Dive into front-end development with a focus on React, cutting-edge frameworks, JavaScript, TypeScript, Swift, Animation and more',
+  generator: 'Next.js',
   keywords: [
     'Front-end Development',
     'React',
@@ -53,14 +56,11 @@ export const metadata: Metadata = {
     'Animation',
     'Swift',
   ],
-  applicationName: 'zhangyu.dev',
-  authors: {
-    name: 'zhangyu1818',
-    url: 'https://github.com/zhangyu1818',
-  },
-  creator: 'zhangyu1818',
   publisher: 'zhangyu1818',
-  generator: 'Next.js',
+  title: {
+    absolute: 'zhangyu.dev',
+    template: '%s | zhangyu.dev',
+  },
   verification: {
     google: 'ULSANpODFw1TULe1QTOUFT8z8QXPVIA1MRTMQL7PAbw',
   },

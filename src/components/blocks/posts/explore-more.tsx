@@ -1,11 +1,11 @@
 'use client'
 
-import { useState } from 'react'
+import { IconBeach } from '@tabler/icons-react'
 
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 
-import { IconBeach } from '@tabler/icons-react'
+import { useState } from 'react'
 
 const MotionWave = dynamic(
   () => import('motion-wave').then(module => module.MotionWave),
@@ -27,33 +27,33 @@ export const ExploreMore = (props: ExploreMoreProps) => {
       <MotionWave
         width={280}
         height={280}
-        className='z-0 h-full w-full rounded-xl bg-surface-1 dark:bg-surface dark:fill-surface-1 lg:rounded-2xl xl:rounded-3xl'
+        className='z-0 size-full rounded-xl bg-surface-1 dark:bg-surface dark:fill-surface-1 lg:rounded-2xl xl:rounded-3xl'
         initialConfig={{
-          frequency: 0.4,
           amplitude: 30,
-          speed: 4,
+          frequency: 0.4,
           offset: 50,
+          speed: 4,
         }}
         motionConfig={{
+          amplitude: {
+            loop: true,
+            value: 60,
+          },
           frequency: {
-            value: 1,
             duration: 8,
             loop: true,
-          },
-          amplitude: {
-            value: 60,
-            loop: true,
-          },
-          speed: {
-            value: 6,
-            loopDelay: 1,
-            loop: true,
+            value: 1,
           },
           offset: {
-            value: enter ? -200 : 50,
-            loop: false,
             duration: 0.5,
             ease: [0.16, 1, 0.3, 1],
+            loop: false,
+            value: enter ? -200 : 50,
+          },
+          speed: {
+            loop: true,
+            loopDelay: 1,
+            value: 6,
           },
         }}
       />

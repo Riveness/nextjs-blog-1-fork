@@ -1,9 +1,9 @@
 'use client'
 
-import { useState } from 'react'
-
 import { IconCheck, IconCopy } from '@tabler/icons-react'
 import { clsx } from 'clsx'
+
+import { useState } from 'react'
 
 interface CopyButtonProps {
   content: string
@@ -29,7 +29,7 @@ export const CopyButton = (props: CopyButtonProps) => {
           ? '!block bg-gray-100 text-green-500 dark:bg-gray-700'
           : 'text-gray-500',
       )}
-      onClick={handleClick}
+      onClick={() => void handleClick()}
     >
       {copied && (
         <span className='absolute -left-2 top-1/2 -translate-x-full -translate-y-1/2 rounded bg-black/90 p-2 text-xs text-surface dark:bg-inherit dark:text-color-1'>

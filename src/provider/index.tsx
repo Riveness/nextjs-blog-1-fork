@@ -1,7 +1,7 @@
 'use client'
-import { useRouter } from 'next/navigation'
-
 import { I18nProvider, RouterProvider } from 'react-aria-components'
+
+import { useRouter } from 'next/navigation'
 
 import { FontProvider } from '@/context/font'
 

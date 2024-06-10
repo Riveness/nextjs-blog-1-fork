@@ -8,37 +8,37 @@ import {
 import clsx from 'clsx'
 
 interface AlertProps {
-  type: 'note' | 'tip' | 'important' | 'warning ' | 'caution'
   children: React.ReactNode
+  type: 'caution' | 'important' | 'note' | 'tip' | 'warning '
 }
 
 const icons = {
+  caution: IconUrgent,
+  important: IconMessageReport,
   note: IconInfoSquare,
   tip: IconBulb,
-  important: IconMessageReport,
   warning: IconAlertTriangle,
-  caution: IconUrgent,
 }
 
 export const Alert = (props: AlertProps) => {
-  const { type, children } = props
+  const { children, type } = props
 
   const Icon = icons[type]
 
   const textClses = {
+    caution: 'text-red-500',
+    important: 'text-purple-600',
     note: 'text-blue-500',
     tip: 'text-green-600',
-    important: 'text-purple-600',
     warning: 'text-yellow-600',
-    caution: 'text-red-500',
   }
 
   const borderClses = {
+    caution: 'border-red-500',
+    important: 'border-purple-600',
     note: 'border-blue-500',
     tip: 'border-green-600',
-    important: 'border-purple-600',
     warning: 'border-yellow-600',
-    caution: 'border-red-500',
   }
 
   const textCls = textClses[type]

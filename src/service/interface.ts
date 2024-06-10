@@ -1,4 +1,15 @@
-import type { Repository, Label, Connection } from '@discublog/api/interface'
+import type { Connection, Label, Repository } from '@discublog/api/interface'
+
+export interface PinnedItemContent {
+  description: string
+  forkCount: number
+  homepageUrl: string
+  languages: Connection<Label>
+  name: string
+  stargazerCount: number
+  url: string
+  visibility: 'PUBLIC'
+}
 
 export interface PinnedItems {
   user: {
@@ -6,17 +17,6 @@ export interface PinnedItems {
       nodes: PinnedItemContent[]
     }
   }
-}
-
-export interface PinnedItemContent {
-  name: string
-  url: string
-  description: string
-  homepageUrl: string
-  stargazerCount: number
-  forkCount: number
-  visibility: 'PUBLIC'
-  languages: Connection<Label>
 }
 
 export type RepositoryFile = Repository<{ object: { text: string } }>

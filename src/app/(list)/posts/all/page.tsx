@@ -1,4 +1,4 @@
-import { type Metadata } from 'next'
+import type { Metadata } from 'next'
 
 import { Grid } from '@/components/grid'
 import { Post } from '@/components/post'

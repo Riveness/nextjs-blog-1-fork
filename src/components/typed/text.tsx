@@ -1,7 +1,7 @@
-import { useEffect, useRef } from 'react'
-
 import { IconChevronRight } from '@tabler/icons-react'
 import { clsx } from 'clsx'
+
+import { useEffect, useRef } from 'react'
 
 import { useIsServer } from '@/hooks/useIsServer'
 import { sleep } from '@/utils'
@@ -9,16 +9,16 @@ import { sleep } from '@/utils'
 import type { TypedChildProps } from './typed'
 
 export interface TypedTextProps extends TypedChildProps {
-  beforeDelay?: number
   afterDelay?: number
+  beforeDelay?: number
 }
 
 export const TypedText = (props: TypedTextProps) => {
   const {
-    children,
     active,
-    beforeDelay = 500,
     afterDelay = 500,
+    beforeDelay = 500,
+    children,
     onRendered,
   } = props
   const ref = useRef<HTMLElement | null>(null)
@@ -37,7 +37,7 @@ export const TypedText = (props: TypedTextProps) => {
       }
       const text = children.trim()
       const stringArr = Array.from(
-        text.replace(ref.current.innerText.trim(), ''),
+        text.replace(ref.current.textContent!.trim(), ''),
       )
       let index = 0
       id = window.setInterval(() => {
@@ -46,7 +46,7 @@ export const TypedText = (props: TypedTextProps) => {
           sleep(afterDelay).then(onRendered)
           return
         }
-        ref.current.innerText += stringArr[index++]
+        ref.current.textContent += stringArr[index++]
       }, 150)
     }
     if (beforeDelay) {
@@ -58,7 +58,6 @@ export const TypedText = (props: TypedTextProps) => {
       cancel = true
       window.clearInterval(id)
     }
-    // eslint-disable-next-line
   }, [])
 
   if (isServer) {

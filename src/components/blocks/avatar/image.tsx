@@ -1,12 +1,11 @@
 'use client'
 
-import Image from 'next/image'
-
 import { clsx } from 'clsx'
 
-import avatarImg from '@/images/avatar.webp'
+import Image from 'next/image'
 
 import { useIsServer } from '@/hooks/useIsServer'
+import avatarImg from '@/images/avatar.webp'
 
 export const AvatarImage = () => {
   const isServer = useIsServer()

@@ -1,10 +1,10 @@
-import { useState, Children, cloneElement } from 'react'
+import { Children, cloneElement, useState } from 'react'
 
 import { useIsServer } from '@/hooks/useIsServer'
 
-export type TypedChildProps = {
-  children: React.ReactNode
+export interface TypedChildProps {
   active?: boolean
+  children: React.ReactNode
   onRendered?: VoidFunction
 }
 

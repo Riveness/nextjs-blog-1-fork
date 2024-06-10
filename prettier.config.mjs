@@ -1,8 +1,8 @@
 export default {
+  arrowParens: 'avoid',
+  jsxSingleQuote: true,
+  plugins: ['prettier-plugin-tailwindcss'],
   semi: false,
   singleQuote: true,
-  jsxSingleQuote: true,
-  arrowParens: 'avoid',
-  plugins: ['prettier-plugin-tailwindcss'],
   tailwindFunctions: ['clsx', 'tw', 'withTw'],
 }

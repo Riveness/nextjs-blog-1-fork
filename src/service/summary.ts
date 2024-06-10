@@ -5,7 +5,7 @@ import OpenAI from 'openai'
 
 import { sleep } from '@/utils'
 
-const queue: Set<Promise<unknown>> = new Set()
+const queue = new Set<Promise<unknown>>()
 
 export async function createSummary(content: string) {
   async function query(time: number) {
@@ -15,11 +15,11 @@ export async function createSummary(content: string) {
     const completion = await openai.chat.completions.create({
       messages: [
         {
-          role: 'system',
           content:
             "Please generate a very short summary (in English) of the user content, do not include the author's subjective opinions, and must be no longer than 20 words (this is important).",
+          role: 'system',
         },
-        { role: 'user', content },
+        { content, role: 'user' },
       ],
       model: 'gpt-3.5-turbo',
     })
@@ -30,11 +30,13 @@ export async function createSummary(content: string) {
   // not sure how to limit API requests, when I wake up I will have all the result
   const delay = queue.size * 60000
 
+  // eslint-disable-next-line no-console
   console.log(`task ${queue.size}, waiting for ${delay / 1000}s...`)
   const promise = query(delay)
   queue.add(promise)
   const result = await promise
   queue.delete(promise)
+  // eslint-disable-next-line no-console
   console.log(`task ${queue.size} done`)
   return result
 }

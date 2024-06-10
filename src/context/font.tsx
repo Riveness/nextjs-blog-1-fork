@@ -2,7 +2,7 @@ import React, { createContext, useEffect, useState } from 'react'
 
 import { isServer } from '@/utils'
 
-export type FontType = 'serif' | 'sans'
+export type FontType = 'sans' | 'serif'
 
 export const fontContext = createContext<[FontType, (font?: FontType) => void]>(
   ['sans', () => {}],
@@ -11,7 +11,7 @@ export const fontContext = createContext<[FontType, (font?: FontType) => void]>(
 let defaultFont: FontType = 'sans'
 
 if (!isServer()) {
-  const storedFont: FontType | null = sessionStorage.getItem('font') as FontType
+  const storedFont = sessionStorage.getItem('font') as FontType | null
   if (storedFont) {
     defaultFont = storedFont
   }
@@ -22,7 +22,6 @@ export const FontProvider = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     toggleFont(defaultFont)
-    // eslint-disable-next-line
   }, [])
 
   function toggleFont(next?: FontType) {

@@ -5,13 +5,13 @@ import { OverlayArrow } from 'react-aria-components'
 import { Tooltip } from '@/components/ui'
 
 interface TwoslashTooltipProps {
-  noArrow?: boolean
   children: React.ReactNode
+  noArrow?: boolean
   portalContainer?: HTMLElement
 }
 
 export const TwoslashTooltip = (props: TwoslashTooltipProps) => {
-  const { noArrow, children, portalContainer } = props
+  const { children, noArrow, portalContainer } = props
 
   return (
     <Tooltip

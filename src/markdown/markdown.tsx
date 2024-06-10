@@ -2,12 +2,12 @@ import path from 'node:path'
 
 import rehypeShiki, { type RehypeShikiOptions } from '@shikijs/rehype'
 import {
-  transformerNotationDiff,
-  transformerNotationHighlight,
-  transformerNotationFocus,
-  transformerNotationErrorLevel,
   transformerMetaHighlight,
   transformerMetaWordHighlight,
+  transformerNotationDiff,
+  transformerNotationErrorLevel,
+  transformerNotationFocus,
+  transformerNotationHighlight,
   transformerNotationWordHighlight,
 } from '@shikijs/transformers'
 import { transformerTwoslash } from '@shikijs/twoslash'
@@ -17,7 +17,7 @@ import rehypeSlug from 'rehype-slug'
 import remarkGfm from 'remark-gfm'
 import { MDX, type MDXProps } from 'rsc-mdx'
 
-import { rehypeGithubAlert, findCodeText } from './plugins'
+import { findCodeText, rehypeGithubAlert } from './plugins'
 import { rendererMdx } from './twoslash/renderMdx'
 
 interface MarkdownProps {
@@ -45,19 +45,19 @@ export async function Markdown(props: MarkdownProps) {
         [
           rehypeShiki,
           {
-            parseMetaString: (meta, node) => {
+            parseMetaString(meta, node) {
               const metaData = meta.split(' ')
               const fileName = metaData.find(item => path.extname(item) !== '')
               const codeText = findCodeText(node)
 
               return {
-                'data-file': fileName,
                 content: codeText?.value,
+                'data-file': fileName,
               }
             },
             themes: {
-              light: 'github-light',
               dark: 'dracula-soft',
+              light: 'github-light',
             },
             transformers: [
               transformerNotationDiff(),
@@ -68,8 +68,8 @@ export async function Markdown(props: MarkdownProps) {
               transformerMetaHighlight(),
               transformerMetaWordHighlight(),
               transformerTwoslash({
-                renderer: rendererMdx(),
                 explicitTrigger: true,
+                renderer: rendererMdx(),
               }),
             ],
           } as RehypeShikiOptions,

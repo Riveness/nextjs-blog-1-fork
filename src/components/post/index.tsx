@@ -1,6 +1,6 @@
-import Link from 'next/link'
-
 import { IconHash } from '@tabler/icons-react'
+
+import Link from 'next/link'
 
 import { createSummary, getSummary, writeSummery } from '@/service/summary'
 
@@ -14,7 +14,7 @@ interface PostProps {
 
 export const Post = async (props: PostProps) => {
   const { node } = props
-  const { labels, number, bodyText } = node
+  const { bodyText, labels, number } = node
   const firstLabel = labels.nodes[0]
 
   const summaryJson = await getSummary()
@@ -48,6 +48,7 @@ export const Post = async (props: PostProps) => {
         >
           <h2>
             {node.title}
+            {/* eslint-disable-next-line @typescript-eslint/no-unnecessary-condition */}
             {firstLabel && (
               <i
                 className='absolute -bottom-1 left-1 block h-1 w-1/3 opacity-80'
@@ -56,7 +57,7 @@ export const Post = async (props: PostProps) => {
             )}
           </h2>
         </Link>
-        <p className='mt-1 overflow-hidden text-ellipsis whitespace-nowrap text-color-2'>
+        <p className='mt-1 truncate text-color-2'>
           {labels.nodes.map(node => (
             <Link
               key={node.id}

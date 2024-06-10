@@ -1,8 +1,8 @@
 import {
-  IconPinFilled,
-  IconStar,
   IconBook2,
   IconGitFork,
+  IconPinFilled,
+  IconStar,
 } from '@tabler/icons-react'
 import { clsx } from 'clsx'
 
@@ -50,10 +50,11 @@ export const Pinned = async () => {
               </p>
               <p className='relative z-20 flex-1'>{item.description}</p>
               <div className='relative z-20 flex gap-5'>
+                {/* eslint-disable-next-line @typescript-eslint/no-unnecessary-condition */}
                 {language && (
                   <div className='flex items-center'>
                     <i
-                      className='box-content inline-block h-2.5 w-2.5 rounded-full border border-[rgb(255,255,255,0.2)]'
+                      className='box-content inline-block size-2.5 rounded-full border border-[rgb(255,255,255,0.2)]'
                       style={{
                         background: language.color,
                         color: language.color,

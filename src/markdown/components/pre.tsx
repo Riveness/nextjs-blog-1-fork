@@ -11,7 +11,7 @@ interface PreProps
 }
 
 export const Pre = (props: PreProps) => {
-  const { className, content, children, ...rest } = props
+  const { children, className, content, ...rest } = props
   return (
     <div className='relative'>
       <pre {...rest} className={clsx('group', className)}>

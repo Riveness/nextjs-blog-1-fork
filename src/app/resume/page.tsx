@@ -1,7 +1,7 @@
-import Link from 'next/link'
-
 import { IconX } from '@tabler/icons-react'
-import { type Metadata, type Viewport } from 'next'
+
+import type { Metadata, Viewport } from 'next'
+import Link from 'next/link'
 
 import { Dot } from '@/components/blocks/resume'
 import { Typed, TypedContent, TypedText } from '@/components/typed'
@@ -12,30 +12,30 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#282935' },
-    { media: '(prefers-color-scheme: dark)', color: '#282935' },
-  ],
   colorScheme: 'dark',
+  themeColor: [
+    { color: '#282935', media: '(prefers-color-scheme: light)' },
+    { color: '#282935', media: '(prefers-color-scheme: dark)' },
+  ],
 }
 
 export default function Page() {
   const lastBuildTime = formatDateTime(
     {
-      weekday: 'short',
-      month: 'short',
       day: '2-digit',
       hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
       hour12: false,
+      minute: '2-digit',
+      month: 'short',
+      second: '2-digit',
+      weekday: 'short',
     },
     new Date(),
   )
 
   return (
     <div className='flex min-h-svh items-center justify-center bg-[#282935] p-4'>
-      <main className='flex max-h-[90svh] max-w-[65ch] flex-1 flex-col overflow-hidden rounded-2xl border border-gray-600 shadow-2xl shadow-black'>
+      <main className='flex max-h-[90svh] max-w-prose flex-1 flex-col overflow-hidden rounded-2xl border border-gray-600 shadow-2xl shadow-black'>
         <header className='grid h-11 flex-none grid-cols-[1fr_2fr_1fr] items-center border-b border-gray-800 bg-zinc-700 px-4 text-xs font-semibold'>
           <span className='flex gap-2'>
             <Link aria-label='Back to home page' href='/'>

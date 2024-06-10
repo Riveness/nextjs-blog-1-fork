@@ -1,11 +1,11 @@
 'use client'
-import { memo, useEffect, useRef, useState } from 'react'
-
-import { type StaticImageData } from 'next/image'
-
 import { IconRefresh } from '@tabler/icons-react'
 import * as p2 from 'p2-es'
 import { tw } from 'tw-styled'
+
+import type { StaticImageData } from 'next/image'
+
+import { memo, useEffect, useRef, useState } from 'react'
 
 interface GaltonProps {
   images: StaticImageData[]
@@ -15,7 +15,7 @@ function sleep(ms: number) {
   return new Promise(resolve => setTimeout(resolve, ms))
 }
 
-const Pin = tw.div`absolute h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full border bg-surface-2 shadow-sm`
+const Pin = tw.div`absolute size-4 -translate-x-1/2 -translate-y-1/2 rounded-full border bg-surface-2 shadow-sm`
 
 export const Galton = memo<GaltonProps>(props => {
   const { images } = props
@@ -24,6 +24,7 @@ export const Galton = memo<GaltonProps>(props => {
   const [showRestart, setShowRestart] = useState(false)
 
   const resetAndStart = () => {
+    // eslint-disable-next-line unicorn/consistent-function-scoping
     const clearEle = () =>
       ref.current?.querySelectorAll('.skill').forEach(ele => ele.remove())
 
@@ -89,9 +90,13 @@ export const Galton = memo<GaltonProps>(props => {
         })
       }),
     ).then(async images => {
-      if (canceled) return
+      if (canceled) {
+        return
+      }
       for (const image of images) {
-        if (image.status !== 'fulfilled') return
+        if (image.status !== 'fulfilled') {
+          return
+        }
         const container = document.createElement('div')
         const img = document.createElement('img')
         container.appendChild(img)
@@ -168,9 +173,13 @@ export const Galton = memo<GaltonProps>(props => {
     world.step(fixedTimeStep)
 
     const updateTransforms = () => {
-      if (bodies.length === 0) return [false]
+      if (bodies.length === 0) {
+        return [false]
+      }
       return bodies.map(([body, element]) => {
-        if (body.sleepState === p2.Body.SLEEPING) return true
+        if (body.sleepState === p2.Body.SLEEPING) {
+          return true
+        }
         const x =
           (body.interpolatedPosition[0] - body.shapes[0].boundingRadius) * scale
         const y =
@@ -212,10 +221,11 @@ export const Galton = memo<GaltonProps>(props => {
   }
 
   useEffect(() => {
-    if (!ref.current) return
+    if (!ref.current) {
+      return
+    }
 
     return resetAndStart()
-    // eslint-disable-next-line
   }, [])
 
   return (

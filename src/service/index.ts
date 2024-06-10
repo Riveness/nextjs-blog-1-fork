@@ -1,20 +1,19 @@
-import 'server-only'
+import { Client } from '@discublog/api/client'
+import { Octokit } from '@octokit/core'
+import { repoName, repoOwner } from '~/blog-config'
 
 import { unstable_cache as cache } from 'next/cache'
 
-import { Client } from '@discublog/api/client'
-import { Octokit } from '@octokit/core'
+import type { PinnedItems, RepositoryFile } from './interface'
 
-import { repoName, repoOwner } from '~/blog-config'
-
-import type { RepositoryFile, PinnedItems } from './interface'
+import 'server-only'
 
 const { graphql } = new Octokit({ auth: process.env.GITHUB_TOKEN })
 
 const client = new Client({
-  token: process.env.GITHUB_TOKEN!,
   name: repoName,
   owner: repoOwner,
+  token: process.env.GITHUB_TOKEN!,
 })
 
 export const queryProfileREADME = cache(async () => {
@@ -32,8 +31,8 @@ export const queryProfileREADME = cache(async () => {
         }
       `,
       {
-        owner: repoOwner,
         file: 'master:README.md',
+        owner: repoOwner,
       },
     ),
     graphql<RepositoryFile>(
@@ -49,22 +48,22 @@ export const queryProfileREADME = cache(async () => {
         }
       `,
       {
-        owner: repoOwner,
         file: 'main:README.md',
+        owner: repoOwner,
       },
     ),
   ])
 
   if (masterResult.status === 'fulfilled') {
     const { repository } = masterResult.value
-    if (repository?.object?.text) {
+    if (repository?.object.text) {
       return masterResult.value
     }
   }
 
   if (mainResult.status === 'fulfilled') {
     const { repository } = mainResult.value
-    if (repository?.object?.text) {
+    if (repository?.object.text) {
       return mainResult.value
     }
   }
@@ -114,7 +113,7 @@ export const queryPinnedItems = cache(() =>
 export const queryAllLabels = cache(() => client.queryLabels())
 
 export const queryAllPosts = cache(() =>
-  client.search({ bodyText: true, body: true }),
+  client.search({ body: true, bodyText: true }),
 )
 
 export const queryByLabel = cache((label: string) => client.search({ label }))

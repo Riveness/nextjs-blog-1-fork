@@ -1,16 +1,16 @@
 'use client'
 
-import { useParams } from 'next/navigation'
-
 import { twMerge } from 'tailwind-merge'
 import { useFlip } from 'use-flip'
 
-import { type StaticPageParams } from '@/app/static-page'
+import { useParams } from 'next/navigation'
+
+import type { StaticPageParams } from '@/app/static-page'
 
 export const Block = (props: React.HTMLAttributes<HTMLDivElement>) => {
   const { children, className, style, ...rest } = props
 
-  const { tab: currentTab } = useParams<StaticPageParams>()
+  const { tab: currentTab } = useParams() as Partial<StaticPageParams>
 
   const ref = useFlip([currentTab], { duration: 700 })
 
@@ -26,14 +26,14 @@ export const Block = (props: React.HTMLAttributes<HTMLDivElement>) => {
       {...rest}
       style={{
         ...style,
-        order: needChangeStyle ? 0 : 1,
-        opacity: needChangeStyle ? 1 : 0.8,
         filter: needChangeStyle ? 'blur(0)' : 'blur(3px)',
+        opacity: needChangeStyle ? 1 : 0.8,
+        order: needChangeStyle ? 0 : 1,
         ...(needChangeStyle
           ? {}
           : {
-              userSelect: 'none',
               pointerEvents: 'none',
+              userSelect: 'none',
             }),
       }}
       className={twMerge(

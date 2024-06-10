@@ -1,6 +1,6 @@
-import { type MetadataRoute } from 'next'
-
 import { site } from '~/blog-config'
+
+import type { MetadataRoute } from 'next'
 
 import { staticPage } from '@/app/static-page'
 import { queryAllLabels, queryAllPosts } from '@/service'
@@ -18,28 +18,28 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   return [
     // Home Page
     ...['', ...restStaticPage].map(path => ({
-      url: url(path),
       priority: path ? 0.8 : 1,
+      url: url(path),
     })),
     // Post List
     {
-      url: url('/posts/all'),
       priority: 0.6,
+      url: url('/posts/all'),
     },
     // Posts
     ...allPosts.search.nodes.map(post => ({
-      url: url(`/posts/${post.number}`),
       priority: 1,
+      url: url(`/posts/${post.number}`),
     })),
     // Tags
     ...(allTags.repository?.labels.nodes.map(label => ({
-      url: url(`/tags/${label.name}`),
       priority: 0.6,
+      url: url(`/tags/${label.name}`),
     })) ?? []),
     // Resume
     {
-      url: url('resume'),
       priority: 0.6,
+      url: url('resume'),
     },
   ].map(item => ({ ...item, changeFrequency: 'weekly', lastModified }))
 }

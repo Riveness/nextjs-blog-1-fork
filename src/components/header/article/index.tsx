@@ -1,6 +1,6 @@
-import Link from 'next/link'
-
 import { clsx } from 'clsx'
+
+import Link from 'next/link'
 
 import { FontToggle } from './font-toggle'
 import { ThemeToggle } from './theme-toggle'

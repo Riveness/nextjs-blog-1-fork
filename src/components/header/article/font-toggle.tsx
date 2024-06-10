@@ -1,13 +1,14 @@
 'use client'
 
-import { useDeferredValue } from 'react'
-
-import { IconTypography, IconCheck } from '@tabler/icons-react'
+import { IconCheck, IconTypography } from '@tabler/icons-react'
 import { MenuTrigger } from 'react-aria-components'
 
-import { Menu, MenuItem, Button, Popover } from '@/components/ui'
-import { type FontType } from '@/context/font'
+import { useDeferredValue } from 'react'
+
+import { Button, Menu, MenuItem, Popover } from '@/components/ui'
 import { useFont } from '@/hooks/useFont'
+
+import type { FontType } from '@/context/font'
 
 export const FontToggle = () => {
   const [font, toggleFont] = useFont()

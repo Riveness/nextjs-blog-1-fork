@@ -1,6 +1,6 @@
-import Link from 'next/link'
+import { IconHash, IconTags } from '@tabler/icons-react'
 
-import { IconTags, IconHash } from '@tabler/icons-react'
+import Link from 'next/link'
 
 import { queryAllLabels } from '@/service'
 
@@ -21,16 +21,16 @@ export const Tags = async () => {
         Tags
       </h2>
       <ul className='flex flex-1 flex-wrap items-center gap-1 md:gap-2 lg:gap-4 lg:p-4'>
-        {nodes?.map(node => {
-          const { name, color } = node!
+        {nodes.map(node => {
+          const { color, name } = node
           return (
             <li key={name}>
               <Link
                 href={`/tags/${name}`}
                 className='flex items-center rounded-2xl px-1 py-0.5 text-sm shadow-sm md:gap-1 md:px-2 md:py-1 lg:text-base'
                 style={{
-                  border: `2px solid #${color}`,
                   backgroundColor: `#${color}33`,
+                  border: `2px solid #${color}`,
                 }}
               >
                 <IconHash className='size-4' />
