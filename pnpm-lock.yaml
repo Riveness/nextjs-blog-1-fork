@@ -181,8 +181,8 @@ importers:
         specifier: ^1.1.3
         version: 1.1.3(tailwindcss@3.4.4)
       tw-styled:
-        specifier: ^1.0.0
-        version: 1.0.0(tailwind-merge@2.3.0)
+        specifier: 2.0.0
+        version: 2.0.0
       typescript:
         specifier: ^5.5.3
         version: 5.5.3
@@ -3498,10 +3498,8 @@ packages:
   tslib@2.6.2:
     resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}
 
-  tw-styled@1.0.0:
-    resolution: {integrity: sha512-CoiWIoXiRQVS2jVjFnP2F+fE3aYZWP4K6GCrk7lfA3HGrV1dChb+BRBjXuZg9fCWGBLuiljD4tgMm9PdtRunEA==}
-    peerDependencies:
-      tailwind-merge: ^2.2.0
+  tw-styled@2.0.0:
+    resolution: {integrity: sha512-HAUGlAsOdpiG8BiXwINN/Jb/fmXQc7hatjdYCxtzvtvtSyxxttQ82/8FhXxsMt9cfg24qXW7E3hl8fVG6ULVNA==}
 
   twoslash-protocol@0.2.9:
     resolution: {integrity: sha512-uKQl8UboT6JU4VAtYaSI3DbNtgaNhFaTpCSMy/n3tRl5lMlMhrjiuNKdqx15xjcviconuGJ9oObkz1h9zJFrJg==}
@@ -8233,8 +8231,8 @@ snapshots:
 
   tslib@2.6.2: {}
 
-  tw-styled@1.0.0(tailwind-merge@2.3.0):
-    dependencies:
+  tw-styled@2.0.0:
+    optionalDependencies:
       tailwind-merge: 2.3.0
 
   twoslash-protocol@0.2.9: {}

@@ -1,5 +1,5 @@
 import { IconTerminal } from '@tabler/icons-react'
-import { tw } from 'tw-styled'
+import { tw } from 'tw-styled/merge'
 
 import dynamic from 'next/dynamic'
 import Link from 'next/link'

@@ -1,7 +1,7 @@
 'use client'
 import { IconRefresh } from '@tabler/icons-react'
 import * as p2 from 'p2-es'
-import { tw } from 'tw-styled'
+import { tw } from 'tw-styled/merge'
 
 import type { StaticImageData } from 'next/image'
 
